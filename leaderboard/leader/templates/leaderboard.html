@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Leaderboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F6F6F6;
+            
+        }
+        body, h1, h2, h3, h4, h5, h6, p, table {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+        .table-container {
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .table {
+            background-color: #fff;
+            box-shadow:  0px 4px 8px rgba(0, 0, 0, 0.1);
+            
+        }
+        .table th {
+            background-color: #3193C5;
+            color: white;
+            text-align: center;
+           
+        }
+        .rounded-table {
+    border-radius: 10px; /* Adjust the value for more/less rounding */
+    overflow: hidden; /* Ensures the rounded corners display properly */
+    }
+
+    .table-bordered th, 
+    .table-bordered td {
+    border-radius: 0; /* Ensures individual cells don't round */
+    }
+    .table-title{
+        border-bottom: 2px dashed gray ;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+
+   
+        .ranking-header {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- You can set ur header here -->>
+    <div class="container table-container">
+        <h1 class="ranking-header">Study Leaderboard</h1>
+
+        <!-- Row with two tables -->
+        <div class="row">
+            <!-- Day Ranking Table -->
+             
+            <div class="col-12 col-lg-6 mb-4">
+                <h2 class="table-title">Daily ranking</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered rounded-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>User</th>
+                                <th>Hours (Today)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in day_data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ entry.user__username }}</td>
+                                <td>{{ entry.total_hours }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Week Ranking Table -->
+            <div class="col-12 col-lg-6">
+                <h2 class="table-title">Weekly ranking</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered rounded-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>User</th>
+                                <th>Hours (This Week)</th>
+                            </tr>
+                        </thead>
+                        
+<tbody>
+    {% for entry in week_data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ entry.user__username }}</td>
+        <td>{{ entry.total_hours }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- You can set ur footer here -->>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
